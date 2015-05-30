@@ -1,0 +1,5 @@
+#!/bin/sh
+
+AHCPP_BIN=`dirname $0`
+
+$AHCPP_BIN/ahcpp_impl/ahcpp.rb $1 $2

@@ -1,0 +1,17 @@
+#ifndef INCLUDED_<%= @pkg.upcase %>_TOKEN_TYPE_DEF_H
+#define INCLUDED_<%= @pkg.upcase %>_TOKEN_TYPE_DEF_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+<% @token_types.each_with_index do |token_type, idx| %>
+#define <%= @token_type_prefix %><%= token_type %> <%= idx %>
+
+<% end %>
+
+#ifdef __cplusplus
+} // end extern "C"
+#endif
+    
+#endif // INCLUDED_<%= @pkg.upcase %>_TOKEN_TYPE_DEF_H

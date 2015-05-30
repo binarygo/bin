@@ -1,0 +1,47 @@
+@@FLEX
+
+ws       [ \r\n\t]+
+id       (_[[:alnum:]]*)|([[:alpha:]][[:alnum:]]*)
+integer  0|[1-9][[:digit:]]*
+float    {integer}?\.[[:digit:]]+
+
+%%
+
+{ws}        {}
+{id}        { return @ID; }
+{integer}   { return @INTEGER; }
+{float}     { return @FLOAT; }
+"?"         { return @QMARK; }
+":"         { return @COLON; }
+"||"        { return @OR; }
+"&&"        { return @AND; }
+"<"         { return @LT; }
+">"         { return @GT; }
+"<="        { return @LE; }
+">="        { return @GE; }
+"=="        { return @EQ; }
+"!="        { return @NE; }
+"!"         { return @NOT; }
+"+"         { return @PLUS; }
+"-"         { return @MINUS; }
+"*"         { return @MULTIPLY; }
+"/"         { return @DIVIDE; }
+"^"         { return @POWER; }
+"("         { return @LPAREN; }
+")"         { return @RPAREN; }
+<<EOF>>     { return @EOS; }
+.           { return @ERROR; }
+
+@@PEG
+expr
+cond_expr
+or_expr
+and_expr
+eq_expr
+rel_expr
+add_expr
+multiply_expr
+power_expr
+unary_expr
+primary_expr
+

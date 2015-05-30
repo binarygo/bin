@@ -1,0 +1,52 @@
+#include <<%= @pkg %>_token_type.h>
+#include <<%= @pkg %>_error.h>
+#include <cassert>
+
+namespace <%= @pkg %> {
+
+// CLASS METHODS
+bool TokenType::fromInt(Value* v, int i)
+{
+    assert(v);    
+    switch(i) {
+<% @token_types.each do |token_type| %>
+        case <%= token_type %>: {
+            *v = <%= token_type %>;
+            return true;
+        } break;
+<% end %>
+    }
+    return false;
+}
+
+bool TokenType::fromString(Value* v, const std::string& s)
+{
+    assert(v);
+<% @token_types.each do |token_type| %>
+    if(s == "<%= token_type %>")
+    {
+        *v = <%= token_type %>;
+        return true;
+    }
+<% end %>
+    return false;
+}
+
+int TokenType::toInt(Value v)
+{
+    return v;
+}
+
+std::string TokenType::toString(Value v)
+{
+    switch(v) {
+<% @token_types.each do |token_type| %>
+        case <%= token_type %>: return "<%= token_type %>";
+<% end %>
+    }
+    assert(0);
+    return "";
+}
+    
+} // close namespace <%= @pkg %>
+

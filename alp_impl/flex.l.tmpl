@@ -1,0 +1,18 @@
+%option reentrant
+%option warn nodefault
+%option prefix="<%= @pkg %>_yy"
+%option header-file="<%= @pkg %>_flex_lexer.h"
+%option outfile="<%= @pkg %>_flex_lexer.c"
+%option noyywrap yylineno never-interactive nounistd
+
+%{
+#include <<%= @pkg %>_token_type_def.h>
+#include <<%= @pkg %>_read_stream.h>
+
+#define YY_INPUT(buf, result, max_size) \
+    result = <%= @pkg %>_read_stream(buf, max_size, yyextra)
+%}
+
+<%= @flex_rules %>
+
+%%

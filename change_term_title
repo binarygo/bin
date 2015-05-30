@@ -1,0 +1,5 @@
+#!/bin/sh
+
+term_title=$1
+
+echo "\033]0;$term_title\007"

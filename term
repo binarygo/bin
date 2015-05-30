@@ -1,0 +1,10 @@
+#!/bin/sh
+
+term_title=$1
+curr_dir=`pwd`
+cmd="change_term_title $term_title; cd $curr_dir; clear"
+
+osascript -e "tell application \"Terminal\" to do script \"$cmd\""
+
+
+

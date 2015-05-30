@@ -1,0 +1,50 @@
+#ifndef INCLUDED_<%= @pkg.upcase %>_ERROR_H
+#define INCLUDED_<%= @pkg.upcase %>_ERROR_H
+
+#include <exception>
+#include <sstream>
+#include <string>
+
+namespace <%= @pkg %> {
+
+class Error: public std::exception
+{
+private:
+    // DATA
+    std::string d_msg;
+    
+public:
+    // CREATORS
+    explicit Error(const std::string& msg): d_msg(msg) {}
+    ~Error() {}
+    Error(const Error& other): std::exception(other), d_msg(other.d_msg) {}
+
+    // MANIPULATORS
+    Error& operator= (const Error& rhs)
+    {
+        std::exception::operator=(rhs);
+        if(this != &rhs)
+        {
+            d_msg = rhs.d_msg;
+        }
+        return *this;
+    }
+
+    std::string& msg() noexcept { return d_msg; }
+
+    // ACCESSORS
+    const std::string& msg() const noexcept { return d_msg; }
+    const char* what() const noexcept { return d_msg.c_str(); }
+};
+
+#define THROW_<%= @pkg.upcase %>_ERROR(msg)\
+    do {\
+        std::ostringstream <%= @pkg %>_error_oss;\
+        <%= @pkg %>_error_oss << msg;\
+        throw Error(<%= @pkg %>_error_oss.str());\
+    } while(0)
+
+} // close namespace <%= @pkg %>
+
+
+#endif // INCLUDED_<%= @pkg.upcase %>_ERROR_H

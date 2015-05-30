@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ALP_BIN=`dirname $0`
+
+$ALP_BIN/alp_impl/alp.rb $1 $2

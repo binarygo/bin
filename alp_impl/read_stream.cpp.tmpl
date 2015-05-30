@@ -1,0 +1,23 @@
+#include <<%= @pkg %>_read_stream.h>
+#include <<%= @pkg %>_stream_reader.h>
+
+#include <stdexcept>
+#include <cassert>
+
+extern "C"
+size_t <%= @pkg %>_read_stream(char* buf, size_t max_size, void* stream_reader)
+{
+    assert(stream_reader);
+
+    try
+    {
+        <%= @pkg %>::StreamReader* streamReader = (<%= @pkg %>::StreamReader*)stream_reader;
+        return streamReader->read(buf, max_size);
+    }
+    catch(...)
+    {
+        // no-op
+    }
+
+    return 0;
+}

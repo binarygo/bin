@@ -1,0 +1,27 @@
+#include <<%= @h_file_name %>>
+
+namespace <%= @ns %> {
+
+// CREATORS
+<%= @class_name %>::<%= @class_name %>()
+{
+}
+
+<%= @class_name %>::~<%= @class_name %>()
+{
+}
+
+<%= @class_name %>::<%= @class_name %>(const <%= @class_name %>& other)
+{
+}
+
+// MANIPULATORS
+<%= @class_name %>& <%= @class_name %>::operator= (const <%= @class_name %>& rhs)
+{
+    if(this != &rhs)
+    {
+    }
+    return *this;
+}
+
+} // close namespace <%= @ns %>

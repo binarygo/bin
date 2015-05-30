@@ -1,0 +1,30 @@
+#ifndef INCLUDED_<%= @pkg.upcase %>_TOKEN_TYPE_H
+#define INCLUDED_<%= @pkg.upcase %>_TOKEN_TYPE_H
+
+#include <<%= @pkg %>_token_type_def.h>
+#include <string>
+
+namespace <%= @pkg %> {
+
+struct TokenType
+{
+    // TYPES
+    enum Value
+    {
+<% @token_types.each_with_index do |token_type, index| %>
+        <%= token_type %> = <%= @token_type_prefix %><%= token_type %><% if index < @token_types.size-1 %>,<% end %>
+
+<% end %>
+    };
+
+    // CLASS METHODS
+    static bool fromInt(Value* v, int i);
+    static bool fromString(Value* v, const std::string& s);
+    static int toInt(Value v);
+    static std::string toString(Value v);
+};
+
+} // close namespace <%= @pkg %>
+
+
+#endif // INCLUDED_<%= @pkg.upcase %>_TOKEN_TYPE_H

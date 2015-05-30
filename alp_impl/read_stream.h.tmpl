@@ -1,0 +1,16 @@
+#ifndef INCLUDED_<%= @pkg.upcase %>_READ_STREAM_H
+#define INCLUDED_<%= @pkg.upcase %>_READ_STREAM_H
+
+#include <string.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+size_t <%= @pkg %>_read_stream(char* buf, size_t max_size, void* stream_reader);
+
+#ifdef __cplusplus
+} // end extern "C"
+#endif
+    
+#endif // INCLUDED_<%= @pkg.upcase %>_READ_STREAM_H
