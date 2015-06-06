@@ -1,0 +1,50 @@
+#include <<%= @h_file_name %>>
+#include <cassert>
+
+namespace <%= @pkg %> {
+
+// CLASS METHODS
+bool <%= @class_name %>::fromInt(Value* v, int i)
+{
+    assert(v);    
+    switch(i) {
+<% @enum_names.each do |enum_name| %>
+        case <%= enum_name.upcase %>: {
+            *v = <%= enum_name.upcase %>;
+            return true;
+        } break;
+<% end %>
+    }
+    return false;
+}
+
+bool <%= @class_name %>::fromString(Value* v, const std::string& s)
+{
+    assert(v);
+<% @enum_names.each do |enum_name| %>
+    if(s == "<%= enum_name.upcase %>")
+    {
+        *v = <%= enum_name.upcase %>;
+        return true;
+    }
+<% end %>
+    return false;
+}
+
+int <%= @class_name %>::toInt(Value v)
+{
+    return v;
+}
+
+std::string <%= @class_name %>::toString(Value v)
+{
+    switch(v) {
+<% @enum_names.each do |enum_name| %>
+        case <%= enum_name.upcase %>: return "<%= enum_name.upcase %>";
+<% end %>
+    }
+    assert(0);
+    return "";
+}
+    
+} // close namespace <%= @pkg %>

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+AENUM_BIN=`dirname $0`
+
+$AENUM_BIN/aenum_impl/aenum.rb $1 $2 $3
