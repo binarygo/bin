@@ -3,12 +3,18 @@
 #define <%= @h_guard %>
 
 
+#include <memory>
 #include <string>
 
 namespace <%= @pkg %> {
 
 class <%= @class_name %>
 {
+pubic:
+    // TYPES
+    typedef std::unique_ptr<<%= @class_name %>> UP;
+    typedef std::shared_ptr<<%= @class_name %>> SP;
+
 private:
     // DATA
 
